@@ -9,6 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.endalia.R
+import com.example.endalia.util.Singleton
 import com.google.android.material.textfield.TextInputEditText
 
 class LoginFragment : Fragment() {
@@ -29,6 +30,7 @@ class LoginFragment : Fragment() {
         viewModel.configViewmodel(requireContext())
         observeViewModel()
         setListeners()
+
     }
 
     fun setListeners() {
