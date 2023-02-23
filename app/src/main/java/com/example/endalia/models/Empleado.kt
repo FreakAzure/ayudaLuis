@@ -11,7 +11,8 @@ data class Empleado(
     val puestoTrabajo: String,
     val telefono: String,
     val correo: String,
-    val retrato: String
+    val retrato: String,
+    val contraseña: String
 )
 
 @Dao
@@ -24,4 +25,7 @@ interface EmpleadoDao {
 
     @Delete
     fun delete(empleado: Empleado)
+
+    @Query("SELECT * FROM employees WHERE email = :email")
+    fun findEmployeeByEmail(email: String): Empleado?
 }
