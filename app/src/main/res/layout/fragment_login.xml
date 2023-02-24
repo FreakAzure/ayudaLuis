@@ -7,18 +7,35 @@
     android:padding="18dp"
     tools:context=".view.fragment.login.LoginFragment">
 
+    <ImageView
+        android:id="@+id/endaliaLogo"
+        android:layout_width="248dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/endalia_logo"
+        app:layout_constraintBottom_toTopOf="@+id/userEmailLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userEmailLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:hint="Usuario"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="#F0EEED"
+        app:boxStrokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endaliaLogo"
+        app:startIconDrawable="@drawable/user_icon">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#F0EEED" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -28,22 +45,58 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Password"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/userEmailLayout">
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="#F0EEED"
+        app:boxStrokeWidth="1dp"
+        app:layout_constraintTop_toBottomOf="@id/userEmailLayout"
+        app:startIconDrawable="@drawable/password_icon"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userPass"
             android:layout_width="match_parent"
-            android:inputType="textPassword"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/loginButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Acceder"
+        android:textColor="#868686"
+        app:buttonBackgroundColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintEnd_toEndOf="@id/userPassLayout"
+        app:layout_constraintStart_toStartOf="@id/userPassLayout"
         app:layout_constraintTop_toBottomOf="@id/userPassLayout"
-        android:layout_marginTop="18dp"/>
+        app:strokeColor="#868686" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#57a3f3"
+        android:text="registrarse"
+        android:textColor="#FFFFFF"
+        app:buttonBackgroundColor="#1c83ee"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:strokeColor="#868686" />
+
+    <ImageView
+        android:id="@+id/waterMark"
+        android:layout_width="211dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/water_mark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
