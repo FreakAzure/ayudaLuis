@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.endalia.R
-import com.example.endalia.util.Singleton
+import com.example.endalia.view.fragment.register.RegisterFragment
+import com.example.endalia.view.fragment.userList.UserListFragment
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -27,7 +31,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        viewModel.configViewmodel(requireContext())
         observeViewModel()
         setListeners()
 
@@ -35,11 +38,14 @@ class LoginFragment : Fragment() {
 
     fun setListeners() {
         val button = view?.findViewById<Button>(R.id.loginButton)
+        val registerButton = view?.findViewById<Button>(R.id.toRegisterButton)
         val emailInput = view?.findViewById<TextInputEditText>(R.id.userEmail)
         val passInput = view?.findViewById<TextInputEditText>(R.id.userPass)
 
         button?.setOnClickListener {
-            viewModel.performLogin()
+            lifecycleScope.launch {
+                viewModel.performLogin()
+            }
         }
         emailInput?.doOnTextChanged { text, _, _, _ ->
             // Updates viewmodel _email
@@ -48,6 +54,11 @@ class LoginFragment : Fragment() {
         passInput?.doOnTextChanged { text, _, _, _ ->
             // Updates viewmodel _pass
             viewModel.setUserPass(text.toString())
+        }
+
+        registerButton?.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.main_frame, RegisterFragment())
+                .commit()
         }
     }
 
@@ -70,7 +81,7 @@ class LoginFragment : Fragment() {
                     // Show user not found
                 }
                 LoginViewModel.LoginState.Success -> {
-
+                    parentFragmentManager.beginTransaction().replace(R.id.main_frame, UserListFragment()).commit()
                 }
             }
         }
